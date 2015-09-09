@@ -1,0 +1,16 @@
+.navbar-header{
+    color: #cdbfe3;
+}
+.navbar-header a{
+    color: #5c4383;
+}
+.navbar-nav a{
+    color: #5c4383;
+}
+.bs-docs-nav {
+    background: #e6e6e6;
+}
+
+.test{
+    border: 1px solid #e6e6e6;
+}
