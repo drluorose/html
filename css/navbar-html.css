@@ -31,3 +31,10 @@
 .list-group-item:hover div{
     display: block;
 }
+
+.read-img-default{
+    width: 185px;
+}
+.read-img-small{
+    width: 90px;
+}
