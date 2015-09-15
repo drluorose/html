@@ -1,0 +1,84 @@
+1.支付系统数据整理
+	a.关于账户
+	account{
+		accountId:long;
+		accountName:string;
+
+		id{
+			idType:string ---->        ｜
+			idTypeName:string; ---->   ｜这里需要做字典
+			idName:string;
+			idCode:string;
+			idVerify:boolean;
+		}
+		phone:{
+			phone:string;
+			phoneVerify:boolean;
+		}
+		email{
+			email:string;
+			emailVerify:boolean;
+		}
+		repeat[3]:question{    --->连接表
+			question:long;				|
+			questionDetail:string;		| 字典
+			questionAnswer:string;
+			questionAnswerSlat:string;
+		}
+		cash{
+			cash:decimal;
+			freeze_cash:decimal;
+			uncash:decimal;
+			freeze_uncash:decimal;
+		}
+		customer{
+			businessId:long; ----> 内部分配
+			customerId:long;
+		}
+		password{
+			pwd:string;md5(md5(pwd)+slat)
+			slat:string;
+		}
+		payPassword{
+			payPwd:string;md5(md5(pwd)+slat)
+			slat:string;
+		}
+	}
+2.个人的支付方式 一个账号多个支付方式
+	pay_way{
+		id:long;
+		accountId:long;   account
+		way{
+			wayId:long;		|
+			wayDesc:string; |  字典
+			wayfeature:string;
+			wayData:string; ----> 根据不同的支付方式保存支付数据 
+			wayTime:long;   支付的次数
+			waySuccessTime:long;支付成功的次数
+			createTime:date;
+			checkVerify:boolean;
+			checkTime:data;
+		}
+	}
+
+
+
+3.卡片数据:
+DROP TABLE IF EXISTS `tb_trans_card_bin`;
+CREATE TABLE `tb_trans_card_bin` (
+ `id` bigint(20) NOT NULL DEFAULT '0',
+  `name` varchar(32) DEFAULT NULL COMMENT '发卡行名称',
+  `code` char(10) DEFAULT NULL COMMENT '机构代码',
+  `card_name` varchar(32) DEFAULT NULL COMMENT '卡名',
+  `card_length` varchar(32) DEFAULT NULL COMMENT '卡长度',
+  `card_id` varchar(32) DEFAULT NULL COMMENT '主账户',
+  `create_bank_length` varchar(18) DEFAULT NULL COMMENT '发卡行标示长度',
+  `create_bank` varchar(18) DEFAULT NULL COMMENT '发卡行标示',
+  `card_type` varchar(32) DEFAULT NULL COMMENT '卡类型',
+  `remark` varchar(255) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  `is_delete` char(1) DEFAULT NULL,
+  `card_type_code` char(2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
